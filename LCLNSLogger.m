@@ -124,28 +124,9 @@ static BOOL _LCLNSLogger_showFunctionName = NO;
     
     // get whether we should show function names
     _LCLNSLogger_showFunctionName = (_LCLNSLogger_ShowFunctionNames);
-    
-    // create and remember the logger instance
-    _LCLNSLogger_logger = LoggerInit();
-    
-    // get configuration options for the logger
-    const BOOL logToConsole = (_LCLNSLogger_LogToConsole);
-    const BOOL bufferLocallyUntilConnection = (_LCLNSLogger_BufferLocallyUntilConnection);
-    const BOOL browseBonjour = (_LCLNSLogger_BrowseBonjour);
-    const BOOL browseOnlyLocalDomains = (_LCLNSLogger_BrowseOnlyLocalDomains);
-    const BOOL useSSL = (_LCLNSLogger_UseSSL);
-    
-    // configure the logger
-    uint32_t options = 0;
-    options |= logToConsole ? kLoggerOption_LogToConsole : 0;
-    options |= bufferLocallyUntilConnection ? kLoggerOption_BufferLogsUntilConnection : 0;
-    options |= browseBonjour ? kLoggerOption_BrowseBonjour : 0;
-    options |= browseOnlyLocalDomains ? kLoggerOption_BrowseOnlyLocalDomain : 0;
-    options |= useSSL ? kLoggerOption_UseSSL : 0;
-    LoggerSetOptions(_LCLNSLogger_logger, options);
-    
-    // activate the logger
-    LoggerStart(_LCLNSLogger_logger);
+
+    // This branch uses the default logger and options in that you have already configured.
+    _LCLNSLogger_logger = LoggerGetDefaultLogger();
 }
 
 
